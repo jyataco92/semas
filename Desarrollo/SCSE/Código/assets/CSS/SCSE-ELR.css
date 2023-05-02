@@ -50,7 +50,7 @@ main{ /*Pantalla principal*/
 }
 
 .caja__trasera div h3{ /*Fuente de Aun no tienes...*/
-    font-weight: 400;
+    font-weight: 450;
     font-size: 26px;
 }
 
@@ -91,14 +91,14 @@ main{ /*Pantalla principal*/
     border-radius: 20px;
 }
 
-.contenedor__login-register form h2{ /*Letras de iniciar sesion*/
+.contenedor__login-register form h2{ /*Letras de iniciar sesion y Registrar*/
     font-size: 35px;
     text-align: flex;
     margin-bottom: 20px;
     color: #7F1E57;
 }
 
-.contenedor__login-register form input{ /*Cajas de formulario de login*/
+.contenedor__login-register form input{ /*Cajas de formulario de login y register*/
     width: 100%;
     margin-top: 20px;
     padding: 10px;
@@ -108,7 +108,7 @@ main{ /*Pantalla principal*/
     outline: none;
 }
 
-.contenedor__login-register form button{ /*Boton de iniciar sesion*/
+.contenedor__login-register form button{ /*Boton de iniciar sesion y Registrarse*/
     padding: 10px 40px;
     margin-top: 40px;
     border: none;
@@ -118,11 +118,6 @@ main{ /*Pantalla principal*/
     cursor: pointer;
     color: white;
     outline: none;
-}
-
-.formulario__login{ /*Formulario propiamente dicho*/
-    opacity: 1;
-    display: block;
 }
 
 @media screen and (max-width: 850px){
