@@ -2,7 +2,7 @@ var Pool = require('pg-pool');
 var config = {
     user: 'postgres',
     database: 'Proyecto-SCSE',
-    password: 'corona',
+    password: 'mensajer01',
     host: 'localhost',
     port: 5432
 };

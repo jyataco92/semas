@@ -39,5 +39,5 @@ app.post("/registrarSistemaUsuario",function(req,res){
 });
 
 app.listen(port, host ,function(){   
-    console.log("server start on port"+ port);  
+    console.log("server start on port "+ port);  
 });
