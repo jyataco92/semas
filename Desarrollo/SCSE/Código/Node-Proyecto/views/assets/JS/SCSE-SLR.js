@@ -37,7 +37,7 @@ anchoPage();
         }
     }
 
-    function login(){
+function login(){
         if (window.innerWidth > 850){
             contenedor_login_register.style.left = "410px";
             formulario_login.style.display = "none";

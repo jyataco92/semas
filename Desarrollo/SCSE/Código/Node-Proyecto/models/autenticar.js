@@ -20,7 +20,7 @@ function IngresarSistemaUsuario(usuario, respuesta){
 
 function RegistrarUsuario(usuario, respuesta){
 	pool.connect(function(err, client, done){
-		client.query("SELECT * FROM registrar_usuario($1,$2,$3,$4,$5)", [usuario.name,usuario.lastname,usuario.username,usuario.mail,usuario.password],function(err,data) {        
+		client.query("SELECT * FROM registrar_usuario($1,$2,$3,$4,$5,$6,$7)", [usuario.name,usuario.lastname,usuario.username,usuario.mail,usuario.password,parseInt(usuario.tipo),usuario.codigo],function(err,data) {        
         	done();				
 			if(err){ 	 
         		LogModel.ErrorLog("models/autenticar", "registrar_usuario", err.message);                
