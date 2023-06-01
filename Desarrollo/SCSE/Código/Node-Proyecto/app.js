@@ -5,10 +5,14 @@ var bodyParser = require("body-parser");
 var path = require("path"); 
 var engines = require('consolidate');
 var mustache = require('mustache');
-//var ip = require('ip');
 var multer  = require('multer');
 
 var AutenticarModel = require("./models/autenticar");
+var UsuarioModel = require("./models/usuario");
+var ProfesorModel = require("./models/profesor");
+global.nombreusuario = "-";
+global.idpro = "-";
+
 var app = express();
 var port = process.env.PORT || 8080;
 var host = process.env.IP || '0.0.0.0';
@@ -27,6 +31,7 @@ app.get("/",function(req,res){
 app.post("/ingresarSistemaUsuario",function(req,res){ 	
     req.session.username = req.body.username;
     req.session.password = req.body.password;
+    nombreusuario = req.body.username;   
     AutenticarModel.IngresarSistemaUsuario(req.body, res);   
 });
 app.post("/registrarSistemaUsuario",function(req,res){ 	
@@ -35,7 +40,22 @@ app.post("/registrarSistemaUsuario",function(req,res){
     req.session.mail = req.body.mail;
     req.session.username = req.body.username;
     req.session.password = req.body.password;
+    req.session.tipo = req.body.tipo;
+    req.session.codigo = req.body.codigo;
     AutenticarModel.RegistrarUsuario(req.body, res);   
+});
+app.post("/usuarioLogueado",function(req,res){ 
+    UsuarioModel.DatosUsuario(nombreusuario,res);
+});
+app.post("/listadoCursosProfesor",function(req,res){ 
+    ProfesorModel.ListadoCursos(req.body.curso,res);
+});
+app.post("/consultarProfesor",function(req,res){ 
+    ProfesorModel.ConsultarProfesor(idpro,res);
+});
+app.post("/obtenerIdProfesor",function(req,res){ 
+    idpro = req.body.idprofesor;
+    res.send(JSON.stringify({ estado: 0 }));
 });
 
 app.listen(port, host ,function(){   

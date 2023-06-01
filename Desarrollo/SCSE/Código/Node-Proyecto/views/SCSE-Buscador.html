@@ -13,8 +13,16 @@
                         <div class="navbar-header">                           
                             <img src="assets/images/SeMaslogo.png" width="50" height="50" alt="logo"> 
                         </div>
+<<<<<<< HEAD
                         <h2 class="navbar-text">Cursos disponibles en SéMás</h2>
                         <h2 class="navbar-text">¿Qué elegirás hoy?</h2>
+=======
+                        <h4 class="navbar-text">Cursos disponibles en SéMás</h4>
+                        <h4 class="navbar-text">¿Qué elegirás hoy?</h4>
+                        <h4 class="navbar-text">BIENVENIDO</h4>
+                        <h4 class="navbar-text" id="nombre"></h4>
+                        <h4 class="navbar-text" id="apellido"></h4>
+>>>>>>> PerezBazan
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="SCSE-MenuProfesores.html"><span class="glyphicon glyphicon-log-in"></span> ¿Deseas realizar una oferta como profesor?</a></li>
                             <li><a href="SCSE-Login.html"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesion</a></li>
@@ -24,9 +32,28 @@
             </div>           
         </div> 
         <div class="row">
+<<<<<<< HEAD
             <div class="col-md-12"> 
                 <div id='resultado'></div> 
             </div>
+=======
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <table class="table table-bordered" id="tablaDatos">
+                    <thead>
+                        <tr>
+                            <th scope="col">Identificador</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Enlace</th>
+                        </tr>
+                    </thead>
+                    <tbody id='resultado'>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-2"></div>
+>>>>>>> PerezBazan
         </div>
         <div class="row">
             <div class="panel panel-default">
@@ -34,16 +61,26 @@
                     <div class="row">
                         <div class="col-md-4">               
                             <ul className="sidebar-nav" id="sidebar">
+<<<<<<< HEAD
                                 <li><a href="/Aritmetica">Aritmética</a></li>
                                 <li><a href="/Algebra">Álgebra</a></li>
+=======
+                                <li><a id="Aritmetica">Aritmética</a></li>
+                                <li><a id="Algebra">Álgebra</a></li>
+>>>>>>> PerezBazan
                                 <li><a href="/Algoritmica">Algorítmica</a></li>
                                 <li><a href="/Base de Datos">Base de Datos</a></li>
                             </ul>
                         </div>
                         <div class="col-md-4">
                             <ul className="sidebar-nav" id="sidebar">
+<<<<<<< HEAD
                                 <li><a href="/Biologia">Biología</a></li>
                                 <li><a href="/Calculo">Cálculo</a></li>
+=======
+                                <li><a id="Biologia">Biología</a></li>
+                                <li><a id="Calculo">Cálculo</a></li>
+>>>>>>> PerezBazan
                                 <li><a href="/Desarrollo web">Desarrollo web</a></li>
                                 <li><a href="/Fisica">Física</a></li>
                             </ul>
@@ -59,6 +96,146 @@
                     </div>                    
                 </div>
             </div>            
+<<<<<<< HEAD
         </div>           
+=======
+        </div> 
+        <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+        <script>
+			$.ajax({  
+      			url: "/usuarioLogueado",  
+      			dataType: 'json',  
+      			type: 'POST',   
+      			success: function(data) { 
+                    $("#nombre").text(data[0].nom);
+                    $("#apellido").text(data[0].ape);		
+      			}
+    		});
+            $("#Algebra").on( "click", function() {      
+                var studentdata = { curso: "Algebra"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++){
+                            consulta +='<tr><td>'+data[i].idpro+'</td><td>'+data[i].nom+' '+data[i].ape+': '+data[i].descrip+'</td><td><button>Ver</button></td></tr>';
+                        } 
+                        $("#resultado").append(consulta);	
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("tr");
+                            var col1=currentRow.find("td:eq(0)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });		
+      			    }
+    		    });
+            });
+            $("#Aritmetica").on( "click", function() {
+                var studentdata = { curso: "Aritmetica"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++){
+                            consulta +='<tr><td>'+data[i].idpro+'</td><td>'+data[i].nom+' '+data[i].ape+': '+data[i].descrip+'</td><td><button>Ver</button></td></tr>';
+                        } 
+                        $("#resultado").append(consulta);	
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("tr");
+                            var col1=currentRow.find("td:eq(0)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });		
+      			    }
+    		    });
+            });
+            $("#Calculo").on( "click", function() {
+                var studentdata = { curso: "Calculo"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++){
+                            consulta +='<tr><td>'+data[i].idpro+'</td><td>'+data[i].nom+' '+data[i].ape+': '+data[i].descrip+'</td><td><button>Ver</button></td></tr>';
+                        } 
+                        $("#resultado").append(consulta);	
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("tr");
+                            var col1=currentRow.find("td:eq(0)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });		
+      			    }
+    		    });
+            });
+            $("#Biologia").on( "click", function() {
+                var studentdata = { curso: "Biologia"};
+                var consulta = "";
+                $("#resultado").empty();
+			    $.ajax({  
+      			    url: "/listadoCursosProfesor",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) {                        
+                        for(var i = 0; i < data.length; i++){
+                            consulta +='<tr><td>'+data[i].idpro+'</td><td>'+data[i].nom+' '+data[i].ape+': '+data[i].descrip+'</td><td><button>Ver</button></td></tr>';
+                        } 
+                        $("#resultado").append(consulta);
+                        $("button").on('click',function(){    
+                            var currentRow=$(this).closest("tr");
+                            var col1=currentRow.find("td:eq(0)").html();
+                            var studentdata = { idprofesor: col1};
+                            $.ajax({  
+      			                url: "/obtenerIdProfesor",  
+      			                dataType: 'json',  
+      			                type: 'POST',  
+      			                data: studentdata,  
+      			                success: function(data) { 
+                                    location.href='SCSE-Profesor.html';
+      			                }
+    		                });
+                        });			
+      			    }
+    		    });
+            });           
+        </script>          
+>>>>>>> PerezBazan
     </body>    
 </html>
