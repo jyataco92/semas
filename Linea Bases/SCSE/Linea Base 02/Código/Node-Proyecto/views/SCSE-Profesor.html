@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>    
+    <head>    
+        <meta charset="utf-8">    
+        <title>SCSE-Profesor</title>     
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">       
+    </head>    
+    <body>  
+        <main> 
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Anuncio</div>
+                        <div class="panel-body">
+                            <div class="alert alert-info" id="nombreProfesor"></div>
+                            <div class="alert alert-info" id="apellidoProfesor"></div>
+                            <div class="alert alert-info" id="correoProfesor"></div>
+                            <div class="alert alert-info" id="descripcionProfesor"></div><br>
+                            <button id="Volver">Volver</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>            
+            </div> 
+        </main> 
+        <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+        <script>
+            $.ajax({  
+      			url: "/consultarProfesor",  
+      			dataType: 'json',  
+      			type: 'POST',   
+      			success: function(data) { 
+                    $("#nombreProfesor").text(data[0].nom);
+                    $("#apellidoProfesor").text(data[0].ape);	
+                    $("#correoProfesor").text(data[0].cor);
+                    $("#descripcionProfesor").text(data[0].descrip);	
+      			}
+    		});
+            $("#Volver").on( "click", function(){
+                location.href='SCSE-Buscador.html';
+            });
+        </script> 
+    </body>    
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/SCSE-ELR.css">
+</head>
+<body>
+
+        <main>
+
+            <div class="contenedor__todo">
+                <div class="caja__trasera">
+                    <div class="caja__trasera-login">
+                        <h3>¿Ya tienes una cuenta?</h3>
+                        <p>Inicia sesión con tu cuenta</p>
+                        <button onclick="location.href='SCSE-Login.html'"
+                                id="btn__ingresar">Ingresar</button>
+                    </div>
+                </div>
+
+                <!--Formulario de Login y registro-->
+                <div class="contenedor__login-register">
+                    <!--Login-->
+                    <form action="javascript:void(0);" class="formulario__register">
+                        <h2>Registrar</h2>
+                        <input type="text" id="name" placeholder="Nombre">
+                        <input type="text" id="lastname" placeholder="Apellido">
+                        <input type="text" id="mail" placeholder="Correo">
+                        <input type="text" id="username" placeholder="Nombre de usuario">
+                        <input type="password" id="password" placeholder="Contraseña">
+                        <div class = "container text-left"> 
+                            <label><input type="radio" id="tipo1">Alumno</label>
+                            <label><input type="radio" id="tipo2">Profesor</label>
+                        </div>
+                        <div id="cod"><input type="text" id="code" placeholder="Codigo Alumno"></div>
+                        <button id="butonRegistrar">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+
+        <script src="assets/js/SCSE-SLR.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+        <script>
+            var opcion="";
+            $("#cod").hide();
+            $("#tipo1").on( "click", function() {
+                $("#tipo1").prop("checked", true); 
+                $("#tipo2").prop("checked", false);             
+                opcion = 1;
+                $("#cod").show();
+            });
+            $("#tipo2").on( "click", function() {
+                $("#tipo2").prop("checked", true); 
+                $("#tipo1").prop("checked", false); 
+                opcion = 2;
+                $("#cod").hide();
+            });
+            $("#butonRegistrar").on( "click", function() {
+			    var studentdata = { name: $("#name").val(), lastname: $("#lastname").val(), mail: $("#mail").val(), username: $("#username").val(), password: $("#password").val(), tipo: opcion, codigo: $("#code").val()};
+			    $.ajax({  
+      			    url: "/registrarSistemaUsuario",  
+      			    dataType: 'json',  
+      			    type: 'POST',  
+      			    data: studentdata,  
+      			    success: function(data) { 
+      				    if(data.estado == 1){
+						    alert("Nombre de usuario repetido, por favor digite otro nombre de usuario"); 
+					    }
+					    else{
+                            alert("Usted se acaba de registrar en el sistema");
+					    }   			
+      			    }
+    		    });
+            });
+        </script>
+</body>
+</html>
