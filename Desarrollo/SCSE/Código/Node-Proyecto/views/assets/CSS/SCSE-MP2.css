@@ -39,7 +39,7 @@ background-clip: text;
 -webkit-text-stroke-width: calc(1em / 7);
 -webkit-background-clip: text;
 color: #FFF;
-font-size: 40px;
+font-size: 60px;
 font-family: Work Sans;
 font-style: italic; 
 font-weight: 800;
@@ -117,13 +117,14 @@ max-height: 80px;
     width: 500px;
     height: 110px;
     text-align: center;
-    margin: 10px auto;
+    margin: 2px auto 10px;
     border-radius: 45px 0px;
     border: 1px solid #000;
     background: rgba(5, 0, 255, 0.37);
 }
 
 #contenedor-bienvenido h1{
+   
     color: white;
     font-size: 60px;
     background-image: linear-gradient(black,black);
@@ -147,12 +148,13 @@ max-height: 80px;
 }
 
 #panel-etiquetas div{
-    margin: 48px auto;
+    margin: 0px auto;
 }
 
 #panel-etiquetas a{
     width: 240px;
     max-height: 64px;
+    margin: 40px 0px;
     text-decoration: none;
     color: #000;
     text-align: center;
@@ -164,13 +166,45 @@ max-height: 80px;
     background: #FFF;
 }
 
+#panel-etiquetas a:hover{
+    color: red;
+    background-color: slateblue;
+}
+
 .espaciado_etiquetas{
-    width: 800px;
+    width: 90%;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
 }
 
+#Frase-adicional{
+margin-top: 20px;
+display: flex;
+width: 25%;
+min-height: 88px;
+border-radius: 0px 50px 50px 0px;
+background: #C4A8FF;
 
+}
+
+#Frase-adicional h2{
+padding: 5px;
+color: #FFF;
+font-size: 35px;
+font-family: Work Sans;
+font-style: italic;
+font-weight: 600;
+background-image: linear-gradient(#0029b8,#0029b8);
+background-clip: text; 
+-webkit-text-stroke-color: transparent;
+-webkit-text-stroke-width: calc(1em / 4);
+-webkit-background-clip: text;
+}
+
+/*Fin Cuerpo*/
+/*Footer*/
+/*Fin footer*/
 
