@@ -121,7 +121,7 @@ max-height: 80px;
     width: 500px;
     height: 110px;
     text-align: center;
-    margin: 2px auto 10px;
+    margin: 2px auto 40px;
     border-radius: 45px 0px;
     border: 1px solid #000;
     background: rgba(5, 0, 255, 0.37);
@@ -258,6 +258,17 @@ font-weight: 200;
 .formato-ancla.seleccion:hover{
     color:chartreuse;
     text-decoration: none;
+}
+
+#facebook:hover{
+    color:rgb(62, 62, 255);
+}
+
+#youtube:hover{
+    color:red;
+}
+#twitter:hover{
+    color:skyblue;
 }
 
 /*Fin footer*/
