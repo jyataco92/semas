@@ -1,18 +1,21 @@
 var Pool = require('pg-pool');
-var config = {
+//var poolPromise  = require('pg-pool').poolPromise;
+/*var config = {
     user: 'postgres',
     database: 'Proyecto-SCSE',
-    password: 'mensajer01',
+    password: 'corona',
     host: 'localhost',
     port: 5432
-};
-/*var config = {
-    user: 'hvlbgadgqazqjz',
-    database: 'd9l3t27psm7r03',
-    password: 'cdcdfc5db19397cccb4d3ad0610194567d49fbbe55a30697404aa2a64c77a0fc',
-    host: 'ec2-107-22-169-45.compute-1.amazonaws.com',
-    port: 5432
 };*/
+var config = {
+    user: 'pgscse_user',
+    database: 'pgscse',
+    password: 'vkP0DchOI6a50Se6UrWd67jf7h9MggjP',
+    host: 'dpg-cibnjjh5rnuk9q9sfqdg-a.oregon-postgres.render.com',
+    port: 5432,
+    ssl: true
+};
 var pool = new Pool(config);
+//const pool = await poolPromise;
 
 module.exports.pool = pool;
