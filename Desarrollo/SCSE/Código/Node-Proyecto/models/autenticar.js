@@ -5,7 +5,7 @@ function Autenticar(requerimiento, respuesta, direccion, path){
 }
 
 function IngresarSistemaUsuario(usuario, respuesta){
-	pool.connect(function(err, client, done){
+	pool.connect(function(err, client, done){		
 		client.query("SELECT * FROM ingresar_sistema($1,$2)", [usuario.username,usuario.password],function(err,data) {        
         	done();				
 			if(err){ 	 

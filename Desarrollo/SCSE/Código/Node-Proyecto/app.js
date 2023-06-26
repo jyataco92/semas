@@ -10,15 +10,20 @@ var multer  = require('multer');
 var AutenticarModel = require("./models/autenticar");
 var UsuarioModel = require("./models/usuario");
 var ProfesorModel = require("./models/profesor");
+var ComentarioModel = require("./models/comentario");
+var MensajeModel = require("./models/mensaje");
 global.nombreusuario = "-";
 global.idpro = "-";
+global.idusu = '-';
+global.idproLogueado = '-';
 
 var app = express();
 var port = process.env.PORT || 8080;
 var host = process.env.IP || '0.0.0.0';
 var srcpath = path.join(__dirname,'/views');
 
-app.use(express.static('views'));
+//app.use(express.static('views'));
+app.use(express.static(__dirname+'/views'));
 app.use(session({secret:'XASDASDA', resave: true, saveUninitialized: true}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -44,7 +49,7 @@ app.post("/registrarSistemaUsuario",function(req,res){
     req.session.codigo = req.body.codigo;
     AutenticarModel.RegistrarUsuario(req.body, res);   
 });
-app.post("/usuarioLogueado",function(req,res){ 
+app.post("/usuarioLogueado",function(req,res){    
     UsuarioModel.DatosUsuario(nombreusuario,res);
 });
 app.post("/listadoCursosProfesor",function(req,res){ 
@@ -56,6 +61,30 @@ app.post("/consultarProfesor",function(req,res){
 app.post("/obtenerIdProfesor",function(req,res){ 
     idpro = req.body.idprofesor;
     res.send(JSON.stringify({ estado: 0 }));
+});
+app.post("/calificar",function(req,res){ 
+    ProfesorModel.CalificarProfesor(idpro,req.body.puntos,res);
+});
+app.post("/comentar",function(req,res){ 
+    ComentarioModel.IngresarComentario(idusu,idpro,req.body.comentario,res);
+});
+app.post("/listadoComentarioProfesor",function(req,res){ 
+    ComentarioModel.ListaComentarioProfesor(idpro,res);
+});
+app.post("/mensaje",function(req,res){ 
+    MensajeModel.IngresarMensaje(idusu,idpro,req.body.mensaje,req.body.tipo,res);
+});
+app.post("/consultarProfesorLogueado",function(req,res){ 
+    ProfesorModel.ConsultarProfesor(idproLogueado,res);
+});
+app.post("/actualizarDatosProfesor",function(req,res){ 
+    ProfesorModel.ActualizarProfesor(idusu,req.body.nombre,req.body.apellido,req.body.correo,res);
+});
+app.post("/actualizarCurso",function(req,res){ 
+    ProfesorModel.ActualizarCurso(idproLogueado,req.body.curso,req.body.descripcion,res);
+});
+app.post("/listadoMensajesProfesor",function(req,res){ 
+    MensajeModel.ConsultarMensajeProfesor(idusu,idpro,res);
 });
 
 app.listen(port, host ,function(){   

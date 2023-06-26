@@ -8,6 +8,8 @@ function DatosUsuario(nomusu, respuesta){
                 LogModel.ErrorLog("models/usuario.js", "consultar_datos_usuario", err.message);
             }
             else{
+                idusu = data.rows[0].idusu;
+                idproLogueado = data.rows[0].idpro;
                 respuesta.send(data.rows);
             }              
         });
