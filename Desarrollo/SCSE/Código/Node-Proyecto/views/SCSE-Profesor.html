@@ -11,7 +11,7 @@
         <header> 
             <div id="cabecero">
                 <div id="Logo-titulo">
-                    <a id="Logo" href="/views/Buscador_2.html">
+                    <a id="Logo" href="">
                         <div id="contenedor_imagen" ><img src="assets/images/SeMaslogo_st .png"/></div>
                         <p class="separacion_elementos_cabecero">Sémás</p>
                     </a>
@@ -29,8 +29,12 @@
                 <img src="assets/images/profesor.png" width="180" height="180" alt="logo"><br>
                 <div class="row">
                     <div class="col-md-4">Calificacion: </div>
-                    <div class="col-md-4"><input class="form-control" type="text" id="puntuacion" placeholder="1-10"></div>
+                    <div class="col-md-4"><input class="form-control" type="text" id="puntuacion" placeholder="1-100"></div>
                     <div class="col-md-4"><button class="btn btn-success" id="calificar">Calificar</button></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">Personas que calificaron: </div><br>
+                    <div class="col-md-2"><p id="calificados"></p> </div>
                 </div>
             </div>
             <div class="col-md-5">
@@ -93,7 +97,7 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-6"></div>
-            <div class="col-md-2"><button class="btn btn-success" id="">Adquirir curso</button></div>
+            <div class="col-md-2"><button class="btn btn-success" id="pago">Adquirir curso</button></div>
             <div class="col-md-2"></div>
         </div><br>
         <div class="row">
@@ -145,7 +149,8 @@
                     $("#apellidoProfesor").text("Apellido: "+data[0].ape);	
                     $("#correoProfesor").text("Correo: "+data[0].cor);
                     $("#curso").text("Curso: "+data[0].curs);
-                    $("#descripcionProfesor").text("Descripcion: "+data[0].descrip);	
+                    $("#descripcionProfesor").text("Descripcion: "+data[0].descrip);
+                    $("#calificados").text(data[0].vistado);
       			}
     		});
             var consulta1 = "";
@@ -184,6 +189,7 @@
       			    type: 'POST',  
       			    data: studentdata,  
       			    success: function(data) { 
+                        $("#calificados").text(data[0].calificar_profesor);
       				    alert("Se califico al profesor");		
       			    }
     		    });
@@ -240,6 +246,9 @@
     		            });		
       			    }
     		    });
+            });
+            $("#pago").on( "click", function() {
+			    location.href='SCSE-Pago.html';
             });
         </script> 
     </body>    
