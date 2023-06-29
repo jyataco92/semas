@@ -32,7 +32,6 @@ function CalificarProfesor(idProfesor, puntos, respuesta){
     pool.connect(function(err, client, done) {        
         client.query("SELECT * FROM calificar_profesor($1,$2)", [idProfesor,puntos], function(err,data) {
             done(); 
-            console.log(data.rows[0].ape);
             if(err){
                 LogModel.ErrorLog("models/profesor.js", "consultar_cursos", err.message);
             }
